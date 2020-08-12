@@ -26,8 +26,8 @@ enum Request {
     /// The `URLRequest` object that should be passed to the `URLSession`
     var urlRequest: URLRequest {
         let urlPath = [baseURLString, apiVersion, path].joined(separator: "/")
-        let params = parameters.map { "\($0)=\($1)" }.joined(separator: ",")
-        let urlString = [urlPath, params].joined(separator: "&")
+        let params = parameters.map { "\($0)=\($1)" }.joined(separator: "&")
+        let urlString = [urlPath, params].joined(separator: "?")
         guard let url = URL(string: urlString) else {
             fatalError("Unable to create url from \(urlString)")
         }
@@ -54,7 +54,7 @@ enum Request {
     private var path: String {
         switch self {
         case .headlines:
-            return "headlines"
+            return "top-headlines"
         case .everything:
             return "everything"
         case .sources:
