@@ -10,8 +10,10 @@ import SwiftUI
 @main
 struct FeedMeNewsApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        WindowGroup<AnyView> {
+            let viewModel = HomeViewModel()
+            let coordinator = HomeCoordinator(viewModel: viewModel)
+            return coordinator.start()
         }
     }
 }
