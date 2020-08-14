@@ -32,7 +32,9 @@ final class HomeViewModel: ObservableObject {
                 receiveCompletion: { [weak self] completion in
                     switch completion {
                     case .failure(let error):
-                        self?.error = error
+                        DispatchQueue.main.async {
+                            self?.error = error
+                        }
                     default:
                         return
                     }
